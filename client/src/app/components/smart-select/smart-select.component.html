@@ -1,0 +1,45 @@
+<div class="select-wrapper shadow">
+  <div class="select-dropdown" (click)="toggleDropdown()">
+    <span class="select-location">{{selectedLocation ? selectedLocation : 'Select a location'}}</span>
+    <svg class="dropdown-icon" [class.reverse]="isOpen" xmlns="http://www.w3.org/2000/svg"
+      enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="black" width="18px" height="18px">
+      <g>
+        <path d="M0,0h24v24H0V0z" fill="none" />
+      </g>
+      <g>
+        <g>
+          <g>
+            <path
+              d="M8.71,11.71l2.59,2.59c0.39,0.39,1.02,0.39,1.41,0l2.59-2.59c0.63-0.63,0.18-1.71-0.71-1.71H9.41 C8.52,10,8.08,11.08,8.71,11.71z" />
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div [class.hide]="!isOpen" class="select-dropdown-view shadow">
+    <div class="search">
+      <input (input)="inputHandle($event)" [(ngModel)]="search" class="search-input" placeholder="Search..." />
+      <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="black"
+        width="18px" height="18px">
+        <g>
+          <rect fill="none" height="24" width="24" />
+        </g>
+        <g>
+          <path
+            d="M20.29,18.88l-5.56-5.56c1.13-1.55,1.63-3.58,0.98-5.74c-0.68-2.23-2.57-3.98-4.85-4.44C6.21,2.2,2.2,6.22,3.14,10.86 c0.46,2.29,2.21,4.18,4.44,4.85c2.16,0.65,4.19,0.15,5.74-0.98l5.56,5.56c0.39,0.39,1.02,0.39,1.41,0l0,0 C20.68,19.9,20.68,19.27,20.29,18.88z M5,9.5C5,7.01,7.01,5,9.5,5S14,7.01,14,9.5S11.99,14,9.5,14S5,11.99,5,9.5z" />
+        </g>
+      </svg>
+    </div>
+    <div class="country-list">
+      <div *ngFor="let country of filteredCountries; index as i" [class.selected]="country.name === selectedLocation"
+        [innerHTML]="getFormatted(country.name)" (click)="selectCountry(country.name)" class="list-item"></div>
+      <div *ngIf="!filteredCount" class="none-view">
+        <div *ngIf="search.length" class="none-info">"{{search}}" not found!</div>
+        <div *ngIf="search.length && privilege" class="add-location" (click)="addNewLocation(search)"><span>+</span> Add to the list</div>
+        <div *ngIf="!countries.length" class="none-info">No locations!</div>
+      </div>
+      <small (click)="nextPage()" class="see-more" [class.hide]="noOfItems * pageNo >= filteredCount">{{getMoreCount()}}
+        more...</small>
+    </div>
+  </div>
+</div>

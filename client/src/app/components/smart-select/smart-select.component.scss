@@ -1,0 +1,148 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+:host {
+    .select-wrapper{
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        transition: all 0.3s ease;
+        &:hover{
+            @extend .shadow-sm;
+        }
+
+        .select-dropdown{
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: white;
+            position: relative;
+            z-index: 2;
+            border-radius: 6px;
+
+            .select-location {
+                margin-right: 8px;
+                display: inline-block;
+                min-width: 200px;
+                user-select: none;
+            }
+
+            svg{
+                position: relative;
+                top: 0px;
+                transform: scale(1.5);
+                color: #333;
+            }
+
+            .dropdown-icon{
+                transition: all 0.3s ease;
+                transform: scale(1.5) rotate(0deg);
+                &.reverse{
+                    transform: scale(1.5) rotate(180deg);
+                }
+            }
+        }
+
+        .select-dropdown-view{
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            width: 100%;
+            padding: 10px 0px 0px 0px;
+            background-color: white;
+            border-radius: 6px;
+            opacity: 1;
+            transform: translateY(30px);
+            transition: all 0.24s ease;
+            
+            &.hide{
+                opacity: 0;
+                transform: translateY(0px);
+            pointer-events: none;
+            }
+
+            .search {
+                width: 100%;
+                padding: 4px 12px;
+                background: #def;
+                font-size: 14px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                svg {
+                    fill: royalblue;
+                    opacity: 0.7;
+                }
+
+                .search-input{
+                    min-width: 200px;
+                    border: 0;
+                    outline: 0;
+                    padding: 6px 0px;
+                    background: transparent;
+                }
+            }
+
+            .country-list{
+                position: relative;
+                overflow: hidden;
+                border-bottom-right-radius: 6px;
+                border-bottom-left-radius: 6px;
+                padding-bottom: 8px;
+                .list-item{
+                    padding: 4px 12px;
+                    cursor: pointer;
+                    border-left: 2px solid transparent;
+                    &:hover{
+                        background-color: #f7f7f7;
+                    }
+                    &.selected{
+                        background-color: #f7f7f7;
+                        cursor: default;
+                        border-left: 2px solid royalblue;
+                    }
+                }
+                .see-more{
+                    position: absolute;
+                    display: block;
+                    right: 0;
+                    bottom: 0;
+                    padding: 4px 8px;
+                    font-size: 12px;
+                    border-top-left-radius: 4px;
+                    background-color: #222;
+                    color: whitesmoke;
+                    cursor: pointer;
+                    &.hide{
+                        pointer-events: none;
+                        opacity: 0;
+                    }
+                }
+
+                .none-view{
+                    position: relative;
+                    width: 100%;
+                    padding: 24px 0;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+
+                    .add-location{
+                        color: royalblue;
+                        font-weight: bold;
+                        margin-top: 12px;
+                        padding-bottom: 2px;
+                        border-bottom: 2px dotted royalblue;
+                        cursor: pointer;
+                        font-size: 12px;
+                        opacity: 0.9;
+                        &:hover{
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

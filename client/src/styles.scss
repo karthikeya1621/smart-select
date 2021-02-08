@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap.scss";
+
+html,
+body {
+  height: 100%;
+  background-color: #eaeaea;
+}
+
+.select-wrapper {
+  .country-list {
+    .list-item {
+      .highlight {
+        font-weight: 700;
+        color: royalblue;
+      }
+    }
+  }
+}
